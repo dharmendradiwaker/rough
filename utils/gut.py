@@ -11,6 +11,4 @@ def calcule(age):
     
     else:
         return 'person is 18year old'
-    
-
-print(calcule(25))
+  

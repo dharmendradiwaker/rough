@@ -1,8 +1,7 @@
 import random
 import pycron
-from pycron import cron as pycron_cron 
 import time
-
+from datetime import datetime
 
 def get_number():
     n = 50
@@ -11,8 +10,7 @@ def get_number():
 
 def save_to_file(filename, number):
     with open(filename, 'a') as file:
-        file.write(f"Random number: {number}\n")
-
+        file.write(f"Random number: {number} - {datetime.now()}\n")
 
 def save_job():
     filename = "C:/Users/DHARMENDRA/Desktop/test.txt"
@@ -21,11 +19,9 @@ def save_job():
 
 def main():
     while True:
-        # Check if the current time matches the cron schedule (every minute)
-        if pycron.cron('* * * * *'):   # Every minute
-            print("running code")
+        if pycron.is_now('* * * * *'):   # Every minute
+            print('running')
             save_job()
-            # Sleep for 60 seconds to avoid multiple writes within the same minute
             time.sleep(60)
         else:
             time.sleep(15)
